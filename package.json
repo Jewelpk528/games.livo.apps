@@ -1,0 +1,5 @@
+"scripts": {
+  "dev": "next dev",
+  "build": "next build --no-turbo",
+  "start": "next start"
+}

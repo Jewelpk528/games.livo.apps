@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: radial-gradient(circle, #0f0c29, #302b63, #000);
+  color: white;
+}
+
+.main {
+  text-align: center;
+  padding: 20px;
+}
+
+.title {
+  font-size: 32px;
+  text-shadow: 0 0 10px #00ffcc;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.slider {
+  margin: 20px 0;
+}
+
+.mainImg {
+  width: 80%;
+  border-radius: 15px;
+  box-shadow: 0 0 20px #00ffcc;
+}
+
+.btn {
+  display: inline-block;
+  margin: 20px;
+  padding: 15px 30px;
+  background: green;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+}
+
+.videos video {
+  width: 90%;
+  margin-top: 20px;
+}
+
+.desc {
+  margin-top: 30px;
+}

@@ -1,8 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import Particles from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
+import { useState, useEffect } from "react";
 
 const images = [
   "/images/1.jpeg",
@@ -16,64 +14,102 @@ const images = [
 export default function Home() {
   const [index, setIndex] = useState(0);
 
-  const particlesInit = useCallback(async (engine) => {
-    await loadSlim(engine);
-  }, []);
-
   useEffect(() => {
-    const timer = setInterval(() => {
+    const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
     }, 3000);
-    return () => clearInterval(timer);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <main className="main">
+    <main style={styles.main}>
+      
+      <h1 style={styles.title}>🎮 Game Livo Ink</h1>
 
-      {/* PARTICLES BACKGROUND */}
-      <Particles
-        init={particlesInit}
-        options={{
-          fullScreen: { enable: true, zIndex: -1 },
-          particles: {
-            number: { value: 50 },
-            color: { value: "#00ffcc" },
-            move: { enable: true, speed: 1 },
-            links: { enable: true, color: "#00ffcc" }
-          }
-        }}
-      />
-
-      <h1 className="title">🎮 Game Livo Ink</h1>
-
-      {/* IMAGE SLIDER */}
-      <div className="slider">
-        <img src={images[index]} className="mainImg" />
+      {/* HERO IMAGE */}
+      <div style={styles.heroBox}>
+        <img src={images[index]} style={styles.heroImg} />
       </div>
 
-      {/* 6 IMAGES */}
-      <div className="grid">
+      {/* GRID */}
+      <div style={styles.grid}>
         {images.map((img, i) => (
-          <img key={i} src={img} className="img" />
+          <img key={i} src={img} style={styles.img} />
         ))}
       </div>
 
-      {/* DOWNLOAD BUTTON */}
-      <a href="/apk/game.apk" download className="btn">
-        ⬇ DOWNLOAD GAME
+      {/* DOWNLOAD */}
+      <a href="/apk/game.apk" style={styles.btn}>
+        ⬇ Download Game
       </a>
 
-      {/* VIDEOS */}
-      <div className="videos">
-        <video controls src="/videos/1.mp4" />
+      {/* VIDEO */}
+      <div style={styles.videoBox}>
+        <video src="/videos/1.mp4" controls style={styles.video} />
       </div>
 
       {/* DESCRIPTION */}
-      <div className="desc">
-        <h2>About Game</h2>
-        <p>Casino style gaming landing page with modern UI & animation.</p>
-      </div>
+      <p style={styles.text}>
+        Modern gaming landing page built with Next.js. Smooth UI, fast loading,
+        Vercel optimized.
+      </p>
 
     </main>
   );
 }
+
+const styles = {
+  main: {
+    padding: 20,
+    textAlign: "center",
+    background: "#0b0b1a",
+    color: "white",
+    minHeight: "100vh",
+  },
+  title: {
+    fontSize: 32,
+    marginBottom: 20,
+  },
+  heroBox: {
+    marginBottom: 20,
+  },
+  heroImg: {
+    width: "90%",
+    maxWidth: 500,
+    borderRadius: 10,
+  },
+  grid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gap: 10,
+    margin: "20px auto",
+    maxWidth: 500,
+  },
+  img: {
+    width: "100%",
+    borderRadius: 8,
+  },
+  btn: {
+    display: "inline-block",
+    margin: 20,
+    padding: "10px 20px",
+    background: "#00ffcc",
+    color: "#000",
+    borderRadius: 8,
+    textDecoration: "none",
+    fontWeight: "bold",
+  },
+  videoBox: {
+    marginTop: 20,
+  },
+  video: {
+    width: "90%",
+    maxWidth: 500,
+    borderRadius: 10,
+  },
+  text: {
+    marginTop: 20,
+    opacity: 0.8,
+  },
+};
